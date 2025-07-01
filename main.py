@@ -23,24 +23,24 @@ class MainService:
         account_data = load_json('data/accounts.json')
         company_dict = {}  # 회사별 객체 재사용
 
-        for acc in account_data:
-            company_name = acc["company"]
+        for account in account_data:
+            company_name = account["company"]
             if company_name not in company_dict:
                 company_dict[company_name] = Company(company_name)
-            account = Account(acc["userId"], acc["name"], company_dict[company_name])
+            account = Account(account["userId"], account["name"], company_dict[company_name])
             self.accounts.append(account)
 
         restaurant_data = load_json('data/restaurants.json')
-        for res in restaurant_data:
-            menus = [Menu(m["name"], m["price"]) for m in res["menus"]]
-            meal_time_config = parse_time_range(res["mealTimeRanges"])
-            restaurant = Restaurant(res["code"], res["name"], menus, meal_time_config)
+        for restaurant in restaurant_data:
+            menus = [Menu(menu["name"], menu["price"]) for menu in restaurant["menus"]]
+            meal_time_config = parse_time_range(restaurant["mealTimeRanges"])
+            restaurant = Restaurant(restaurant["code"], restaurant["name"], menus, meal_time_config)
             self.restaurants.append(restaurant)
 
     def find_account(self, user_id):
-        for acc in self.accounts:
-            if acc.userId == user_id:
-                return acc
+        for account in self.accounts:
+            if account.userId == user_id:
+                return account
         return None
 
     def start(self):
@@ -55,15 +55,15 @@ class MainService:
         now = datetime.now()
 
         available_restaurants = [
-            r for r in self.restaurants if r.supports_meal(now)
+            restaurant for restaurant in self.restaurants if restaurant.supports_meal(now)
         ]
 
         if not available_restaurants:
             print(f"현재 시각({now.strftime('%H:%M')})에는 운영 중인 식당이 없습니다.\n")
 
             print("📅 식당 운영 시간 안내 📅")
-            for r in self.restaurants:
-                config = r.meal_time_config
+            for restaurant in self.restaurants:
+                config = restaurant.meal_time_config
 
                 time_noti = []
                 if config.breakfast[0] < config.breakfast[1]:
@@ -73,12 +73,12 @@ class MainService:
                 if config.dinner[0] < config.dinner[1]:
                     time_noti.append(f"저녁 {config.dinner[0].strftime('%H:%M')}~{config.dinner[1].strftime('%H:%M')}")
 
-                print(f"- {r.name} : {' / '.join(time_noti) if time_noti else '운영 시간 없음'}")
+                print(f"- {restaurant.name} : {' / '.join(time_noti) if time_noti else '운영 시간 없음'}")
             return
 
         print("\n이용 가능한 식당 목록:")
-        for idx, r in enumerate(available_restaurants):
-            print(f"{idx + 1}. {r.name}")
+        for idx, restaurant in enumerate(available_restaurants):
+            print(f"{idx + 1}. {restaurant.name}")
 
         try:
             choice = int(input(f"\n안녕하세요, {account.name}님\n식당을 선택해 주세요 (번호 입력): ")) - 1
@@ -96,8 +96,8 @@ class MainService:
             return
 
         print("\n메뉴 목록:")
-        for idx, m in enumerate(selected_restaurant.menus):
-            print(f"{idx + 1}. {m.name} - {m.price}원")
+        for idx, menu in enumerate(selected_restaurant.menus):
+            print(f"{idx + 1}. {menu.name} - {menu.price}원")
 
         try:
             menu_choice = int(input("메뉴를 선택하세요 (번호 입력): ")) - 1

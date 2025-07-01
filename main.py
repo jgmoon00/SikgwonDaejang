@@ -53,11 +53,6 @@ class MainService:
             return
 
         now = datetime.now()
-        # meal_type = self.mealtime_config.get_current_meal_type(now)
-        # if meal_type != 'none':
-        #     print(f"\n[{account.name}]님의 {meal_type} 식사입니다.\n")
-        # else:
-        #     print(f"\n{account.name}님 안녕하세요.")
 
         available_restaurants = [
             r for r in self.restaurants if r.supports_meal(now)
@@ -86,7 +81,7 @@ class MainService:
             print(f"{idx + 1}. {r.name}")
 
         try:
-            choice = int(input(f"\n{account.name}님, 식당을 선택해 주세요 (번호 입력): ")) - 1
+            choice = int(input(f"\n안녕하세요, {account.name}님\n식당을 선택해 주세요 (번호 입력): ")) - 1
             if choice < 0 or choice >= len(available_restaurants):
                 print("해당 식당은 없습니다.")
                 return

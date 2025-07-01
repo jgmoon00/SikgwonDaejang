@@ -1,0 +1,58 @@
+[
+  {
+    "code": "RESTAURANTS001",
+    "name": "밥플러스",
+    "mealTimeRanges": {
+      "breakfast": ["07:00", "09:30"],
+      "lunch": ["11:30", "13:30"],
+      "dinner": ["17:30", "20:00"]
+    },
+    "menus": []
+  },
+  {
+    "code": "RESTAURANT002",
+    "name": "밀향기",
+    "mealTimeRanges": {
+      "lunch": ["11:30", "13:30"],
+      "dinner": ["17:30", "20:00"]
+    },
+    "menus": [
+      {"name": "김치찌개", "price": 7500},
+      {"name": "김치찌개+라면사리", "price": 8000},
+      {"name": "참치찌개", "price": 8000},
+      {"name": "참치찌개+라면사리", "price": 8500},
+      {"name": "비빔막국수", "price": 8000},
+      {"name": "물막국수", "price": 7500},
+      {"name": "떡만두국", "price": 7500},
+      {"name": "순두부찌개", "price": 7000},
+      {"name": "비빔밥", "price": 7500},
+      {"name": "돌솥비빔밥", "price": 8000},
+      {"name": "햄김치볶음밥", "price": 8000},
+      {"name": "쭈꾸미볶음", "price": 8000},
+      {"name": "쭈꾸미덮밥", "price": 8000},
+      {"name": "오징어볶음", "price": 8000},
+      {"name": "오징어덮밥", "price": 8000},
+      {"name": "제육볶음", "price": 8000},
+      {"name": "제육덮밥", "price": 8000},
+      {"name": "김치덮밥", "price": 8000}
+    ]
+  },
+  {
+    "code": "RESTAURANT003",
+    "name": "프로가정식백반",
+    "mealTimeRanges": {
+      "lunch": ["11:00", "14:00"],
+      "dinner": ["17:30", "20:00"]
+    },
+    "menus": [
+      {"name": "김치찌개", "price": 8000},
+      {"name": "된장찌개", "price": 8000},
+      {"name": "제육쌈밥", "price": 8000},
+      {"name": "오징어볶음", "price": 8000},
+      {"name": "보쌈정식", "price": 10000},
+      {"name": "동태탕", "price": 9000},
+      {"name": "비빔밥", "price": 8000},
+      {"name": "돌솥비빔밥", "price": 9000}
+    ]
+  }
+]

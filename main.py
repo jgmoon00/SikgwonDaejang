@@ -53,6 +53,8 @@ class MainService:
             return
 
         now = datetime.now()
+        # 현재 시간 테스트
+        # now = datetime(2025, 7, 3, 13, 57, 2, 838508)
 
         available_restaurants = [
             restaurant for restaurant in self.restaurants if restaurant.supports_meal(now)
